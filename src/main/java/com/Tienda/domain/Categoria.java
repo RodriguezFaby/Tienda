@@ -17,7 +17,7 @@ import lombok.Data;
 @Data //Para la creacion automatica de los sets y gets de los atributos
 @Entity //esta clase se va a manejar como entidad
 @Table(name = "categoria") //mapeo con la tabla categoria
-public class Categoria implements Serializable{  //serializacion es convertir un objeto en algo mas
+public class Categoria implements Serializable{  //serializacion es convertir un objeto en algo mas que se puede almacenar en la BD
     
     private static final long serialVersionUID = 1L;//version de serializacion
     //en esta entidad la asociamos con la tabla de categoria en la BD, debe tener los mismo atributos

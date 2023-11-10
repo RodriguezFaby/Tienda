@@ -1,0 +1,92 @@
+
+/* 
+    Created on : 19 Sept 2023, 19:26:22
+    Author     : quiro
+*/
+
+#encabezado {
+    color: blueviolet;
+    font-weigth: bold;
+    
+}
+
+#tituloPrincipal{
+    color: aquamarine;
+}
+
+.parrafosCentrados{
+    text-align: center;
+    font-weight: bold;
+    color: #666666;
+}
+
+.textoVerde{
+    color: greenyellow;
+}
+
+p,h1,span{
+    color: blue;
+}
+
+a:link{
+    backgroud-color: green;
+    color: white;
+}
+a:visited{
+    backgroud-color: violet;
+    color: white;
+}
+a:hover{
+    backgroud-color: darkblue;
+    color: white;
+}
+a:active{
+    backgroud-color: red;
+    color: white;
+}
+
+p:nth-child(odd){
+    backgroud-color: darksalmon;
+}
+
+p:nth-child(even){
+    backgroud-color: cadetblue;
+}
+
+/*
+//****************************************************
+*/
+
+#barraLateral {
+    position: absolute;
+    height: 81%;
+    top: 13%;
+    left: 0;
+    width: 20%;
+    background-color: burlywood;
+     padding: 10px;
+}
+
+#contenido {
+    position: absolute;
+    height: 81%;
+    top: 12%;
+    left: 20%;
+    width: 80%;
+    backgroud-color: gainsboro;
+    padding: 10px;
+    
+}
+
+#piePagina {
+    position: absolute;
+    height: 7%;
+    bottom: 0%;
+    left: 0%;
+    width: 100%;
+    backgroud-color: aqua;
+    text-align: center;
+    padding-top: 25px;
+    
+        
+}

@@ -23,7 +23,7 @@ public class ProjectConfig implements WebMvcConfigurer{
         slr.setTimeZoneAttributeName("session.current.timezon");
         return slr;
     }
-        
+        /*cambio de idioma*/
         @Bean
         public LocaleChangeInterceptor localeChangeInterceptor() {
         var lci = new LocaleChangeInterceptor();
@@ -34,7 +34,8 @@ public class ProjectConfig implements WebMvcConfigurer{
         public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(localeChangeInterceptor());
     }  
-        
+      
+     /*para acceder a messages.properties en codigo JAVA*/
     @Bean ("messageSource")
     public MessageSource messageSource(){
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();

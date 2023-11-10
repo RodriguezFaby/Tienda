@@ -37,5 +37,16 @@ public class CategoriaServiceImpl implements CategoriaService{
 
     }
     
+    @Override
+    @Transactional
+    public void save(Categoria categoria) {
+        categoriaDao.save(categoria);
+    }
+
+    @Override
+    @Transactional
+    public void delete(Categoria categoria) {
+        categoriaDao.delete(categoria);
+    }
     
 }
