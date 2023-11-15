@@ -35,7 +35,7 @@ public class Categoria implements Serializable{  //serializacion es convertir un
     private boolean activo;
     
     @OneToMany
-    @JoinColumn(name="id_categoria")
+    @JoinColumn(name="id_categoria", insertable = false, updatable = false)
     List<Producto>productos;
     
     //constructor vacio
