@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://wwww.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}">  <!-- Para poder utilizar la clases de bootstrap -->
+        <title>TechShop</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <header th:replace="~{layout/plantilla :: header}"/>
+        <div class="container my-5"> <!-- contenedor con margen en el eje y de 5 -->
+            <div class="row align-items-center"> <!-- fila  dentro celdas de diferentes tamanos y que alinee los items al centro -->
+                <div class="col-md-3"></div><!-- div de tamano 3  -->
+                <div class="col-md-6"> <!--contenedor central  -->
+                    <div class="card"> <!-- card es una clase de bootstap -->
+                        <div class="card-header bg-success"><h2>[[#{login.login}]]</h2></div>
+                        <div class="card-body"> <!-- El cuerpo de nuestro login  -->
+                            <!-- las cosas que debe llevar  -->
+                            <form method="POST" th:action="@{/login}"><!-- debe de llevar un POST con /login -->
+                                <!-- Primer grupo   -->
+                                <div class="form-group row my-3">
+                                    <!-- que tiene un label y un icono de user   -->
+                                    <label class="col-md-5 my-auto" for="username"><i class="fas fa-user-lock"></i>[[#{login.username}]]:</label>
+                                   <!-- Primer opcional   -->
+                                    <div class="col-md-7 my-auto">
+                                        <!-- input donde meto la informacion del username    -->
+                                        <input class="form-control" type="text" name="username" id="username"/>
+                                    </div>
+                                </div>
+                                 <!-- Segundo grupo   -->
+                                <div class="form-group row my-3">
+                                    <label class="col-md-5 my-auto" for="password"><i class="fas fa-key"></i>[[#{login.password}]]</label>
+                                    <div class="col-md-7 my-auto">
+                                        <!-- input donde meto la informacion del passwd    -->
+                                        <input class="form-control" type="password" name="password" id="password"/>
+                                    </div>
+                                </div>
+                                <div class="card-footer col text-center">
+                                    <button class="btn btn-primary" >
+                                         <!-- En nuestro controlador creamos una accion para registrar nuevos usuarios   -->
+                                        <a th:href="@{/registro/nuevo}" class="btn"><i class="fas fa-user-plus"></i> [[#{accion.registrar}]]</a></button>
+                                    <button class="btn btn-info" >         
+                                        <a th:href="@{/registro/recordar}" class="btn"><i class="fas fa-envelope"></i> [[#{accion.recordar}]]</a></button>
+                                    <!-- Toma el valor del username y password antes agregados y lo envia a la accion de login    -->
+                                        <button class="btn btn-success" type="submit">
+                                        <span class="btn"><i class="fas fa-sign-in-alt"></i>
+                                            [[#{login.login}]]</span></button>
+                                </div>
+                            </form>                            
+                        </div>
+                    </div>
+                    <div th:if="${param.error != null}">
+                        <h3>[[#{error.login}]]</h3>
+                    </div>
+                </div>
+            </div>           
+        </div>
+        <footer th:replace="~{layout/plantilla :: footer}"/>
+    </body>
+</html>

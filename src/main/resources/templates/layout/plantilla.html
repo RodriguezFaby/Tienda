@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
     <head th:fragment="head">
         <title>TODO supply a title</title>
@@ -10,7 +11,7 @@
             <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
             <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
             <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-            
+
     </head>
     <body>
         <header th:fragment="header" class="header">
@@ -21,23 +22,61 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                        <ul class="navbar-nav">
+                        <!-- Solo el ADMIN o VENDEDOR pueder tener acceso a esto   -->
+                        <ul class="navbar-nav" sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_VENDEDOR')">
                             <li class="nav-item px-2"><a class="nav-link" th:href="@{/categoria/listado}">[[#{plantilla.categorias}]]</a></li>
                             <li class="nav-item px-2"><a class="nav-link" th:href="@{/producto/listado}">[[#{plantilla.productos}]]</a></li>
                             <li class="nav-item px-2"><a class="nav-link" th:href="@{/usuario/listado}">[[#{plantilla.usuarios}]]</a></li>
-                        </ul>
-                        <ul class="navbar-nav">
-                             <li class="nav-item dropdown">
+                            <!-- Solo el ADMIN tiene acceso a esto-->
+                            <li class="nav-item dropdown" sec:authorize="hasRole('ROLE_ADMIN')">
                                 <a class="nav-link dropdown-toggle" 
                                    data-bs-toggle="dropdown" 
                                    href="#" 
                                    role="button" 
                                    aria-expanded="false">[[#{plantilla.pruebas}]]</a>
                                 <ul class="dropdown-menu dropdown-menu-dark">
-                                    <li><a class="dropdown-item"  th:href="@{/pruebas/listado}">[[#{plantilla.asociaciones}]]</a></li>
+                                    <li>
+                                        <a class="dropdown-item"  th:href="@{/pruebas/listado}">[[#{plantilla.asociaciones}]]</a>
+                                    </li>
+                                    <li
+                                        <a class="dropdown-item"  th:href="@{/pruebas/listado2}">[[#{plantilla.consultas}]]</a>
+                                    </li>
                                 </ul>
                             </li>
-                        </ul>                        
+                        </ul>  
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <a clase="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                                    <ul class="dropdown-menu dropdown-menu-dark">
+                                        <li><a class="dropdown-item" th:href="@{/(lang=es)}">ES</a></li>
+                                        <li><a class="dropdown-item" th:href="@{/(lang=en)}">EN</a></li>
+                                    </ul>
+                            </li>
+                        </ul>
+                        <!-- aparece si el usuario no esta loguado -->
+                        <ul class="navbar-nav" sec:authorize="!isAuthenticated()">
+                            <li class="nav-item">
+                                <a th:href="@{/login}" class="nav-link">
+                                    <i class="fa fa-sign-in-alt"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- aparece si el usuario esta loguado -->
+                        <ul class="navbar-nav" sec:authorize="isAuthenticated()">
+                            <li class="nav-item text-white my-auto">
+                                <i class="fa fa-user mx-2"></i><span sec:authentication="name">User</span>
+                            </li>
+                            <li class="nav-item text-white my-auto">
+                                <i class="fa fa-users mx-1"></i><span sec:authentication="principal.authorities">Roles</span>
+                            </li>
+                            <li class="nav-item text-white my-auto">
+                                <form method="POST" th:action="@{/logout}">
+                                    <button class="btn btn-dark">
+                                        <i class="fa fa-sign-out-alt"></i>
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </nav>
