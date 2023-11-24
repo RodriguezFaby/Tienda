@@ -23,8 +23,8 @@ public class Rol implements Serializable{
     @Column(name = "id_rol") //cuando se le cambia el nombre al atributo
     private Long idRol;
      
-     @NotEmpty
-     private Long nombre;
+     @NotEmpty //nombre debe contener un valor, no puede estar vacio
+     private String nombre;
      
      @Column(name = "id_usuario")
      private Long idUsuario;

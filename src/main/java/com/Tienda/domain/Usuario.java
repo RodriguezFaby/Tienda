@@ -29,6 +29,7 @@ public class Usuario implements Serializable{
     @Column(name = "id_usuario") //cuando se le cambia el nombre al atributo
     private Long idUsuario;
     
+    //no puede estar vacio
     @NotEmpty
      private String username;
     
