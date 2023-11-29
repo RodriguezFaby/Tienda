@@ -1,6 +1,5 @@
 package com.Tienda;
 
-import com.Tienda.service.UsuarioService;
 import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -21,6 +20,7 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+import com.Tienda.service.UsuarioDetailsService;
 
 @Configuration
 public class ProjectConfig implements WebMvcConfigurer {
@@ -80,9 +80,9 @@ public class ProjectConfig implements WebMvcConfigurer {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((request) -> request //autorize los siguientes requests a cualquier user(autenticado o no)
                 //requests con las rutas  
-                .requestMatchers("/", "/index", "/errores/**", "/error", "/error/***",
+                .requestMatchers("/", "/index", "/errores/**", "/error", "/error/**",
                         "/carrito/**", "/pruebas/**", "/reportes/**",
-                        "/registro/**", "/js/**", "/webjars/**")
+                        "/registro/**", "/js/**", "/webjars/**", "/refrescarBoton")
                 .permitAll()
                 //estos requests solo para ADMIN role
                 .requestMatchers(

@@ -40,7 +40,7 @@ public class Usuario implements Serializable{
      private String nombre;
     
     @NotEmpty
-     private String apellido;
+     private String apellidos;
     
      private String correo;
      private String telefono;

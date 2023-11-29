@@ -1,3 +1,14 @@
+$(document).ready(function() {
+    if ($("#resultsBlock").length > 0) {
+        cargarLista();
+    }
+});
+
+function cargarLista(){
+    var url = '/refrescarBoton';  //presente en carritoController
+    $("#resultsBlock").load(url);
+}
+
 /* La siguiente función se utiliza para visualizar la imagen seleccionada en la
  * página html donde se desea "cargar" utilizando un llamado "ajax"*/
 function readURL(input) {
@@ -16,7 +27,7 @@ function readURL(input) {
  * En el carrito de compras utilizando un llamado "ajax" */
 function addCard(formulario) {
     var valor = formulario.elements[0].value;
-    var url = '/carrito/agregar';
+    var url = '/carrito/agregar';  //presente en carritoController
     url = url + '/' + valor;
     $("#resultsBlock").load(url);
 }
